@@ -20,7 +20,7 @@ export const quizzes = [
         question: "What is a “need”?",
         link: "https://blog.cypruscu.com/teen-financial-toolkit-wants-vs.-needs",
         options: ["A gift ", "Something that you have to have to survive or complete a task", "An item or thing you want to upgrade", "The newest products on the shelf"],
-        correctOption: "Something that you have to have to survive or complete a task", "An item or thing you want to upgrade", "The newest products on the shelf",
+        correctOption: "Something that you have to have to survive or complete a task",
         rightPoints: 1,
         wrongPoints: -1
     },
