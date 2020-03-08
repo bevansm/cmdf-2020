@@ -16,12 +16,12 @@ export class PageTemplate extends Component {
 
     render() {
         return (
-            <div height={"100%"}>
+            <div style={{height: "100%"}}>
                 <Layout>
                     <Header>
                         <PageHeader title={this.props.title}/>
                     </Header>
-                    <Content style={{padding: 16}} className={"body"}>
+                    <Content style={{padding: 16, height: window.innerHeight}} className={"body"}>
                         <div style={{height: 500}}>
                             {this.props.children}
                         </div>
