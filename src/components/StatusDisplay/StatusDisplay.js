@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {VictoryChart, VictoryArea, VictoryTheme} from "victory";
+import {VictoryChart, VictoryArea, VictoryTheme, VictoryAxis} from "victory";
 import {Button, Divider, Menu, Popover} from "antd";
 import {getDays} from "../../utils/APIUtils";
 import {CenteredSpinner} from "../shared/CenteredSpinner";
@@ -44,6 +44,7 @@ export class StatusDisplay extends Component {
                       mode={"horizontal"}>
                     {graphs.map((field) => this.renderHeader(field))}
                 </Menu>
+                {this.renderGraph()}
             </div>
         );
     }
@@ -66,8 +67,10 @@ export class StatusDisplay extends Component {
             y: data[field]
         }));
 
-        return <VictoryChart theme={VictoryTheme.material}>
+        return <VictoryChart
+            theme={VictoryTheme.material}>
             <VictoryArea data={data}/>
+            <VictoryAxis/>
         </VictoryChart>;
 
     }

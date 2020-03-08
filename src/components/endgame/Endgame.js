@@ -8,7 +8,9 @@ const { Text } = Typography;
 
 export class Endgame extends Component {
     render() {
-        return <PageTemplate nextPage={PageEnum.LOGIN} title="Game Over">
+        return <PageTemplate nextPage={PageEnum.LOGIN}
+                             title="Game Over"
+                             onNext={() => sessionStorage.clear()}>
             <Text>You have overspent! Your account information has been wiped, but you can see your statistics below. Create a new account to play again!</Text>
             <Divider/>
             <StatusDisplay/>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {notification} from "antd";
 import {baseUrl, taxes} from "../constants/Constants";
-import {dayDataResponse, FieldEnum} from "../constants/APIResponses";
+import {dayDataResponse, defaultDays, FieldEnum} from "../constants/APIResponses";
 import {getTotalCostsNoTax} from "./Utils";
 import {PageEnum} from "../constants/PageEnum";
 
@@ -10,6 +10,7 @@ export function getStatus(caller) {
     const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
     axios.get(baseUrl + "/users/status", getConfig(body))
+        .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
         .then((result) => caller.setState({data: result.data}))
         .catch((err) => apiErrorPopup(err));
 }
@@ -19,8 +20,8 @@ export function getDays(caller) {
     const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
+        .catch(() => ({data: defaultDays}))
         .then((result) => caller.setState({data: result.data}))
-        // .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
         .catch((err) => apiErrorPopup(err));
 }
 
@@ -31,6 +32,7 @@ export function setBudget(caller) {
     console.log(body);
 
     axios.put(baseUrl + "/users/budget", getConfig(body))
+        .catch(() => ({data: defaultDays}))
         .then((result) => caller.setState({data: result.data}))
         .catch((err) => apiErrorPopup(err));
 }
@@ -43,6 +45,7 @@ export function sendDay(caller) {
 
     console.log(body);
     axios.post(baseUrl + "/users/days", getConfig(body))
+        .catch((err) => ({data: dayDataResponse}))
         .then((result) => {
             if (result.data[FieldEnum.SAVINGS] === 0) {
                 window.location.pathname = PageEnum.ENDGAME;
@@ -56,6 +59,7 @@ export function sendPoints(caller) {
 
     console.log(body);
     axios.post(baseUrl + "/users/points", getConfig(body))
+        .catch((err) => ({data: dayDataResponse}))
         .then((result) => {
             if (result.data[FieldEnum.PAYCHECK] < 0) {
                 window.location.pathname = PageEnum.ENDGAME;
