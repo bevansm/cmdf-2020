@@ -10,7 +10,7 @@ produces:
   - application/json
 paths:
   /users/status:
-    get:
+    post:
       summary: Get data for a user
       operationId: getStatus
       x-google-backend:
@@ -19,7 +19,7 @@ paths:
         '200':
           description: User data retrieved
   /users/days:
-    get:
+    put:
       summary: Get all days for user
       operationId: getAllDays
       x-google-backend:
