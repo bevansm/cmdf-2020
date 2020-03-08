@@ -31,6 +31,9 @@ export class PageTemplate extends Component {
                         <PageHeader title={this.props.title}/>
                     </Header>
                     <Content style={{padding: 16, height: "100%"}}>
+                        <Card style={{marginBottom: 8}}>
+                            <img src={`logo.png`} alt="logo" width="75%" height={"75%"} className="center"/>
+                        </Card>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>
                                 <div style={{textAlign: "center"}}>

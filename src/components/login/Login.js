@@ -27,22 +27,24 @@ export class Login extends Component {
                 Login to meet Mia and begin your doughnut-filled adventure!
             </Text>
             <Divider/>
-            <Form hideRequiredMark={true}>
+            <Form hideRequiredMark={true} style={{width: "100%"}}>
                 <Form.Item
                     name={"login"}
                     label={"User Email"}
+                    style={{width: "100%"}}
                     rules={[{required: true, message: 'Please provide an email to begin!'}]}>
                     <Input
                         name={"usr_id"}
                         required={true}
                         value={this.state.user}
                         placeholder={"mias-cats@doughnuts.com"}
+                        style={{width: "100%"}}
                         onChange={(event) => this.setState(
                             {user: event.target.value},
                             () => this.props.setUser(this.state.user))}/>
                 </Form.Item>
             </Form>
-            <img src="doughnut.gif" alt="doughnut" width={150} height={150} className="center"/>
+            <img src="doughnut.gif" alt="doughnut" width={250} height={250} className="center"/>
         </PageTemplate>;
     }
 }

@@ -19,8 +19,8 @@ export const quizzes = [
     {
         question: "What is a “need”?",
         link: "https://blog.cypruscu.com/teen-financial-toolkit-wants-vs.-needs",
-        options: ["A gift ", "Something that you have to have to survive or complete a task", "An item or thing you want to upgrade", "The newest products on the shelf"],
-        correctOption: "Something that you have to have to survive or complete a task",
+        options: ["A gift ", "Something used to survive or complete a task", "Something you want to upgrade", "The newest products on the shelf"],
+        correctOption: "Something used to survive or complete a task",
         rightPoints: 1,
         wrongPoints: -1
     },
@@ -35,10 +35,10 @@ export const quizzes = [
     },
 
     {
-        question: "What is a budget?",
+        question: "What is a weekly budget?",
         link: "https://www.mathsisfun.com/money/budget.html",
-        options: ["A plan to maximize profit", "The minimum amount of money you will spend", "The maximum money you will earn in a week", "A plan for income and spendings over time"],
-        correctOption: "A plan for income and spendings over time",
+        options: ["A plan to maximize profit", "The minimum you will spend", "The maximum you will earn", "A plan for income and spending"],
+        correctOption: "A plan for income and spending",
         rightPoints: 1,
         wrongPoints: -1
     },
@@ -46,8 +46,8 @@ export const quizzes = [
     {
         question: "What is profit?",
         link: "https://www.youtube.com/watch?v=ksnKQpdMgL0",
-        options: ["The total amount of money you make in a day", "The amount of money made after subtracting fixed and variables costs", "The amount of money that is deducted from your earnings", "The rate of earnings growth"],
-        correctOption: "The amount of money made after subtracting fixed and variables costs",
+        options: ["The amount you make", "The amount you make after costs", "The amount deducted from your earnings", "The rate of earnings growth"],
+        correctOption: "The amount you make after costs",
         rightPoints: 1,
         wrongPoints: -1
     },
@@ -55,7 +55,7 @@ export const quizzes = [
     {
         question: "What is revenue?",
         link: "https://www.youtube.com/watch?v=ksnKQpdMgL0",
-        options: ["Spendings", "The rate of earnings growth", "Income", "The amount of money deducted from your earnings"],
+        options: ["Spendings", "The rate of earnings growth", "Income", "Money deducted from your earnings"],
         correctOption: "Income",
         rightPoints: 1,
         wrongPoints: -1
@@ -74,8 +74,8 @@ export const quizzes = [
     {
         question: "What is a fixed expense?",
         link: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/pst/exemptions",
-        options: ["An expense that stays the same every month", "An expense for fixing your house", "The cost of fixing broken equipment", "The cost of fixing broken electronics"],
-        correctOption: "An expense that stays the same every month",
+        options: ["An expense that's always the same", "An expense to fix your house", "The expense to fix equipment", "The cost to fix electronics"],
+        correctOption: "An expense that's always the same",
         rightPoints: 2,
         wrongPoints: -1
     },
@@ -83,7 +83,7 @@ export const quizzes = [
     {
         question: "What is a variable expense?",
         link: "https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/pst/exemptions",
-        options: ["The rate of change of an expense", "The name for the math done to calculate expenses", "An expense that changes over time", "The range that an expense can be"],
+        options: ["The rate an expense changes", "The math to calculate expenses", "An expense that changes over time", "The range of an expense"],
         correctOption: "An expense that changes over time",
         rightPoints: 2,
         wrongPoints: -1

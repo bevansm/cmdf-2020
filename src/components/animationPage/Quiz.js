@@ -51,11 +51,14 @@ export class Quiz extends Component {
         return (
             <Radio.Group
                 onChange={this.onClick}
-                style={{float: "right"}}>
+                style={{float: "left"}}>
                 {options.map((option) =>
-                    <Radio.Button value={option} key={option} size={"large"}>
-                        {option}
-                    </Radio.Button>)}
+                    <div key={option}>
+                        <Radio.Button value={option} key={option} size={"large"} style={{marginBottom: 8}}>
+                            {option}
+                        </Radio.Button>
+                        <br/>
+                    </div>)}
             </Radio.Group>
         )
     }

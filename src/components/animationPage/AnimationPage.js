@@ -35,7 +35,8 @@ export class AnimationPage extends Component {
         return (
             <PageTemplate>
                 <div style={{marginBottom: 8}}>
-                    <img src={`bird${(this.state.quizzesCompleted % 3) + 1}.gif`} alt="bird" width="100%" height={"100%"} className="center"/>
+                    <img src={`bird${(this.state.quizzesCompleted % 3) + 1}.gif`} alt="bird" width="100%"
+                         height={"100%"} className="center"/>
                 </div>
                 {this.renderPoints()}
                 {this.renderQuiz()}
@@ -61,7 +62,7 @@ export class AnimationPage extends Component {
                     percent={percentComplete}
                     status={"active"}
                     strokeColor={{
-                        "0%": "#FFF8C8",
+                        "0%": "#BDD3F2",
                         "100%": "#DEC3E1"
                     }}
                     showInfo={false}
@@ -92,7 +93,7 @@ export class AnimationPage extends Component {
         do {
             index = Math.floor(Math.random() * quizzes.length);
         } while (this.state.quizzesDone.includes(index))
-        const quiz = quizzes[0];
+        const quiz = quizzes[index];
         this.setState((prev) => ({quiz: quiz, quizzesDone: prev.quizzesDone.concat([index])}));
     }
 
