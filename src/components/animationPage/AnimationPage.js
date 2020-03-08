@@ -1,7 +1,10 @@
 import React, {Component} from "react";
-import {Button, Progress} from "antd";
+import {Button, Progress, Tag} from "antd";
 import {PageTemplate} from "../shared/PageTemplate"
 import {ClockCircleOutlined} from "@ant-design/icons";
+import {Quiz} from "./Quiz";
+import {quizzes} from "../../constants/Quizes";
+import {sendPoints} from "../../utils/APIUtils";
 
 export class AnimationPage extends Component {
     constructor(props) {
@@ -9,14 +12,22 @@ export class AnimationPage extends Component {
 
         this.renderProgress = this.renderProgress.bind(this);
         this.onEndDay = this.onEndDay.bind(this);
-        this.addPoints = this.addPoints.bind(this);
-        this.renderQuiz = this.renderQuiz(this);
+        this.updateAfterQuiz = this.updateAfterQuiz.bind(this);
+        this.populateQuiz = this.populateQuiz.bind(this);
+        this.renderQuiz = this.renderQuiz.bind(this);
+        this.renderPoints = this.renderPoints.bind(this);
 
         this.state = {
             quizzesCompleted: 0,
             quizzesTotal: 3,
-            points: 0
+            points: 0,
+            quiz: null,
+            submitted: false
         }
+    }
+
+    componentDidMount() {
+        this.populateQuiz();
     }
 
     render() {
@@ -25,58 +36,78 @@ export class AnimationPage extends Component {
                 <div style={{marginBottom: 8}}>
                     <img src="bird1.gif" alt="bird1" width="800px" height="500px" className="center"/>
                 </div>
+                {this.renderPoints()}
+                {this.renderQuiz()}
                 {this.renderProgress()}
-                <div id={"quiz"}>
-                    {this.renderQuiz()}
-                </div>
             </PageTemplate>);
     }
 
     renderProgress() {
-        if (this.state.quizzesCompleted === this.state.quizzesTotal) return (
-            <div style={{textAlign: "center", marginBottom: 8}}>
-                <div style={{display: "inline-block"}}>
-                    <Button onClick={this.onEndDay}
-                            size={"medium"}
-                            icon={<ClockCircleOutlined />}>
-                        End Day
-                    </Button>
-                </div>
-            </div>
-        );
-        const percentComplete = 100 * this.state.quizzesCompleted / this.state.quizzesTotal;
+        let child;
+        if (this.state.quizzesCompleted === this.state.quizzesTotal) {
+            child = (
+                <Button onClick={this.onEndDay}
+                        size={"medium"}
+                        icon={<ClockCircleOutlined/>}
+                        disabled={this.state.submitted}>
+                    End Day
+                </Button>);
+        } else {
+            const percentComplete = 100 * this.state.quizzesCompleted / this.state.quizzesTotal;
+            child = (
+                <Progress
+                    type={"circle"}
+                    percent={percentComplete}
+                    status={"active"}
+                    strokeColor={{
+                        "0%": "#FFF8C8",
+                        "100%": "#DEC3E1"
+                    }}
+                    showInfo={false}
+                    width={60}
+                />)
+        }
         return (
             <div style={{textAlign: "center", marginBottom: 8}}>
                 <div style={{display: "inline-block"}}>
-                    <Progress
-                        type={"circle"}
-                        percent={percentComplete}
-                        status={"active"}
-                        strokeColor={{
-                            to: "#FFF8C8",
-                            from: "#DEC3E1"
-                        }}
-                        status={"active"}
-                        showInfo={false}
-                        width={60}
-                    />
+                    {child}
                 </div>
             </div>);
     }
 
-    renderQuiz() {
-        const quiz = "";
-        setTimeout(() => {
-            document.getElementById("quiz").appendChild(<Quiz/>)
-        }, 15000);
+    renderPoints() {
+        const points = this.state.points;
+        const color = points < 0 ? "red" : points === 0 ? "orange" : "green";
+        return (
+            <div style={{textAlign: "center", marginBottom: 8}}>
+                <div style={{display: "inline-block"}}>
+                    <Tag color={color}>{`Sales Today: $${this.state.points}.00`}</Tag>
+                </div>
+            </div>);
     }
 
-    addPoints(points) {
-        this.setState((prev) => ({points: prev.points + points, quizzesCompleted: prev.quizzesCompleted + 1}));
+    populateQuiz() {
+        const quiz = quizzes[0];
+        this.setState({quiz: quiz});
+    }
+
+    renderQuiz() {
+        if (!this.state.quiz) return null;
+        return <Quiz
+            onEnd={this.updateAfterQuiz}
+            quiz={this.state.quiz}
+            quizCurrent={this.state.quizzesCompleted + 1}
+            quizzesTotal={this.state.quizzesTotal}/>
+    }
+
+    updateAfterQuiz(points) {
+        this.setState(
+            (prev) => ({points: prev.points + points, quizzesCompleted: prev.quizzesCompleted + 1, quiz: null}),
+            () => setTimeout(() => this.state.quizzesCompleted !== this.state.quizzesTotal ? this.populateQuiz() : null, 5000));
     }
 
     onEndDay() {
-
+        this.setState({submitted: true}, () => sendPoints(this));
     }
 }
 

@@ -5,6 +5,6 @@ const { Text } = Typography;
 
 export class CostPopoverContent extends Component {
     render() {
-        return <Text>This is a placeholder.</Text>;
+        return <Text style={{marginBlock: 16}}>This is a placeholder.</Text>;
     }
 }

@@ -10,7 +10,7 @@ import {CostsEnum, needCosts, wantCosts} from "../../constants/Costs";
 import {getTotalCostsNoTax, roundToTwo} from "../../utils/Utils";
 import {taxes} from "../../constants/Constants";
 
-const {Text, Title} = Typography;
+const {Text} = Typography;
 
 export class Planner extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ export class Planner extends Component {
                           onNext={() => sendDay(self, self.state)}
                           disableNext={disableNext}>
                 <div style={{textAlign: "center", marginBottom: 8}}>
-                    <div style={{display: "inline-block"}}>
+                    <div style={{display: "inline-block", width: "75%"}}>
                         <Popover content={<CostPopoverContent/>}
                                  placement="bottom">
                             <Button>What type of costs are there?</Button>
@@ -90,7 +90,7 @@ export class Planner extends Component {
                 <Col span={4}>
                     <div style={{textAlign: "center", width: 30}}>
                         <div style={{display: "flex"}}>
-                            <img src={`/icons/${costName}.png`}/>
+                            <img src={`/icons/${costName}.png`} alt={costName}/>
                         </div>
                         {window.innerWidth > 500 ? <div style={{display: "flex"}}>
                                 <Text style={{display: "table", margin: "0 auto"}}>{costName}</Text></div>

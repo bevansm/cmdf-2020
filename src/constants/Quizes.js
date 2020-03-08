@@ -1,10 +1,10 @@
 export const quizzes = [
     {
         question: "This is a sample quiz.",
-        link: "https://link.com",
+        link: "https://github.com/mebird",
         options: ["A", "B", "C", "D"],
         correctOption: "A",
-        rightPoints: 0,
-        wrongPoints: 0
+        rightPoints: 1,
+        wrongPoints: -1
     }
 ];

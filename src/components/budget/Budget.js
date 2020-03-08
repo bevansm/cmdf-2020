@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Popover, Button, Typography, InputNumber, Form, Divider} from "antd";
+import {Popover, Button, Typography, InputNumber, Form, Divider, Input} from "antd";
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {BudgetPopoverContent} from "./BudgetPopoverContent";
@@ -54,6 +54,8 @@ export class Budget extends Component {
         const data = this.state.data;
         return (
             <div>
+                <Text>{`It's a new week! Take some time to set some new daily budgeting goals.`}</Text>
+                <Divider/>
                 <Text>{`You have $${data[FieldEnum.SAVINGS]} in the bank, and you are expected to earn $${data[FieldEnum.PAYCHECK]} today.`}</Text>
                 <br/>
                 <Text>{`$${weeklyCosts} will be deducted for weekly costs.`}</Text>
@@ -69,6 +71,7 @@ export class Budget extends Component {
                             name={"savings"}
                             precision={2}
                             required={true}
+                            placeholder={0}
                             value={this.state[FieldEnum.TO_SUPPLIES] || 0}
                             onChange={(value) => this.setState({[FieldEnum.TO_SUPPLIES]: value})}
                             min={0}/>
@@ -81,6 +84,7 @@ export class Budget extends Component {
                             name={"savings"}
                             precision={2}
                             required={true}
+                            placeholder={0}
                             value={this.state[FieldEnum.TO_SAVE] || 0}
                             onChange={(value) => this.setState({[FieldEnum.TO_SAVE]: value})}
                             min={0}/>

@@ -8,9 +8,9 @@ import {AnimationPage} from './components/animationPage/AnimationPage';
 import {PageEnum} from './constants/PageEnum';
 import {UserContext} from "./constants/Context";
 import "./styles/App.css";
-import "./styles/myStyles.css";
 import {Login} from "./components/login/Login";
 import {v1 as uuid} from 'uuid';
+import {Endgame} from "./components/endgame/Endgame";
 
 export class App extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export class App extends Component {
 
     render() {
         return (
-            <div style={{minWidth: 320}}>
+            <div style={{minWidth: 320, minHeight: "100%"}}>
                 <Router>
                     <Switch>
                         <Route path={PageEnum.CONCEPTS}>
@@ -51,6 +51,11 @@ export class App extends Component {
                         <Route path={PageEnum.INTRO}>
                             <UserContext.Provider value={this.state.user}>
                                 <Introduction/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.ENDGAME}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Endgame/>
                             </UserContext.Provider>
                         </Route>
                         <Route path={PageEnum.DEFAULT}>

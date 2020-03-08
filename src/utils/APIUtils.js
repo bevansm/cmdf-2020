@@ -2,8 +2,9 @@ import axios from "axios";
 import {notification} from "antd";
 import {baseUrl, taxes} from "../constants/Constants";
 import {dayDataResponse, FieldEnum} from "../constants/APIResponses";
-import {needCosts, wantCosts} from "../constants/Costs";
+import {useHistory} from "react-router-dom";
 import {getTotalCostsNoTax} from "./Utils";
+import {PageEnum} from "../constants/PageEnum";
 
 // Gets the most recent day data for the user
 export function getDayData(caller) {
@@ -34,8 +35,28 @@ export function sendDay(caller) {
 
     console.log(body);
     axios.post(baseUrl + "/users/days", getConfig(body))
-        .then((result) => caller.setState({data: result.data}))
-        .catch((err) => apiErrorPopup());
+        .then((result) => {
+            if (result.data[FieldEnum.SAVINGS] === 0) {
+                useHistory().push(PageEnum.ENDGAME);
+            }
+        }).catch((err) => apiErrorPopup());
+}
+
+// Sends the points to the backend
+export function sendPoints(caller) {
+    const body = {points: caller.state.points, user: caller.context};
+
+    console.log(body);
+    axios.post(baseUrl + "/users/points", getConfig(body))
+        .then((result) => {
+            if (result.data[FieldEnum.PAYCHECK] <= 0) {
+                useHistory().push(PageEnum.ENDGAME);
+            } else if (result.data[FieldEnum.DAY] % 7 === 0) {
+                useHistory().push(PageEnum.BUDGET);
+            } else {
+                useHistory().push(PageEnum.PLAN);
+            }
+        }).catch((err) => apiErrorPopup());
 }
 
 function getConfig(body) {
