@@ -91,7 +91,7 @@ export class AnimationPage extends Component {
         let index;
         do {
             index = Math.floor(Math.random() * quizzes.length);
-        } while (this.quizzesDone.includes(index))
+        } while (this.state.quizzesDone.includes(index))
         const quiz = quizzes[0];
         this.setState((prev) => ({quiz: quiz, quizzesDone: prev.quizzesDone.concat([index])}));
     }
