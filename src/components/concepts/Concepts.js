@@ -9,7 +9,7 @@ export class Concepts extends Component {
 
     render() {
     return <PageTemplate nextPage={PageEnum.BUDGET} title="Key Concepts">
-        <img src="cockateil.gif" alt="professor bird" width="25%" height="25%" className="center"/>
+        <img src="cockateil.gif" alt="professor bird" width="150" height="150" className="center"/>
         <Divider/>
         <Paragraph>
           As you grow your donut business with Mia, you will learn about a few basic financial literacy concepts:

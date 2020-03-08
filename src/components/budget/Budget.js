@@ -5,7 +5,6 @@ import {PageTemplate} from "../shared/PageTemplate"
 import {BudgetPopoverContent} from "./BudgetPopoverContent";
 import {CenteredSpinner} from "../shared/CenteredSpinner";
 import {getDayData, setBudget} from "../../utils/APIUtils";
-import {UserContext} from "../../constants/Context";
 import {weeklyCosts} from "../../constants/Constants";
 import {FieldEnum} from "../../constants/APIResponses";
 
@@ -21,8 +20,6 @@ export class Budget extends Component {
             [FieldEnum.TO_SUPPLIES]: ""
         };
     }
-
-    static contextType = UserContext;
 
     componentDidMount() {
         getDayData(this);

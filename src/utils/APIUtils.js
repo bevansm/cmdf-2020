@@ -8,7 +8,7 @@ import {PageEnum} from "../constants/PageEnum";
 
 // Gets the most recent day data for the user
 export function getDayData(caller) {
-    const body = {[FieldEnum.USER]: caller.context};
+    const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
@@ -19,7 +19,7 @@ export function getDayData(caller) {
 // Sets the user budget.
 export function setBudget(caller) {
     const body = caller.state;
-    body[FieldEnum.USER] = caller.context;
+    body[FieldEnum.USER] = sessionStorage.getItem("user");
     console.log(body);
 
     axios.put(baseUrl + "/users/budget", getConfig(body))
@@ -31,7 +31,7 @@ export function setBudget(caller) {
 export function sendDay(caller) {
     const body = caller.state;
     body[FieldEnum.SPENDING] = getTotalCostsNoTax(body) * taxes;
-    body[FieldEnum.USER] = caller.context;
+    body[FieldEnum.USER] = sessionStorage.getItem("user");
 
     console.log(body);
     axios.post(baseUrl + "/users/days", getConfig(body))
@@ -44,12 +44,12 @@ export function sendDay(caller) {
 
 // Sends the points to the backend
 export function sendPoints(caller) {
-    const body = {points: caller.state.points, [FieldEnum.USER]: caller.context};
+    const body = {points: caller.state.points, [FieldEnum.USER]: sessionStorage.getItem("user")};
 
     console.log(body);
     axios.post(baseUrl + "/users/points", getConfig(body))
         .then((result) => {
-            if (result.data[FieldEnum.PAYCHECK] <= 0) {
+            if (result.data[FieldEnum.PAYCHECK] < 0) {
                 useHistory().push(PageEnum.ENDGAME);
             } else if (result.data[FieldEnum.DAY] % 7 === 0) {
                 useHistory().push(PageEnum.BUDGET);

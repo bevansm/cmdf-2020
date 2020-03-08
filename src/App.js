@@ -1,26 +1,22 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import {Introduction} from './components/introduction/Introduction';
 import {Concepts} from './components/concepts/Concepts';
 import {Budget} from './components/budget/Budget';
 import {Planner} from './components/planner/Planner';
 import {AnimationPage} from './components/animationPage/AnimationPage';
 import {PageEnum} from './constants/PageEnum';
-import {UserContext} from "./constants/Context";
 import "./styles/App.css";
 import {Login} from "./components/login/Login";
-import {v1 as uuid} from 'uuid';
 import {Endgame} from "./components/endgame/Endgame";
 
 export class App extends Component {
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            user: uuid()
-        }
-
         this.setUser = this.setUser.bind(this);
+        this.renderWrappedRoute = this.renderWrappedRoute.bind(this);
     }
 
     render() {
@@ -29,34 +25,22 @@ export class App extends Component {
                 <Router>
                     <Switch>
                         <Route path={PageEnum.CONCEPTS}>
-                            <UserContext.Provider value={this.state.user}>
-                                <Concepts/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<Concepts/>)}
                         </Route>
                         <Route path={PageEnum.BUDGET}>
-                            <UserContext.Provider value={this.state.user}>
-                                <Budget/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<Budget/>)}
                         </Route>
                         <Route path={PageEnum.PLAN}>
-                            <UserContext.Provider value={this.state.user}>
-                                <Planner/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<Planner/>)}
                         </Route>
                         <Route path={PageEnum.ANIM}>
-                            <UserContext.Provider value={this.state.user}>
-                                <AnimationPage/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<AnimationPage/>)}
                         </Route>
                         <Route path={PageEnum.INTRO}>
-                            <UserContext.Provider value={this.state.user}>
-                                <Introduction/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<Introduction/>)}
                         </Route>
                         <Route path={PageEnum.ENDGAME}>
-                            <UserContext.Provider value={this.state.user}>
-                                <Endgame/>
-                            </UserContext.Provider>
+                            {this.renderWrappedRoute(<Endgame/>)}
                         </Route>
                         <Route path={PageEnum.DEFAULT}>
                             <Login setUser={this.setUser}/>
@@ -67,7 +51,13 @@ export class App extends Component {
         );
     }
 
+    renderWrappedRoute(component) {
+        sessionStorage.getItem("user");
+        if (!sessionStorage.getItem("user")) return <Redirect to={PageEnum.DEFAULT}/>;
+        return component;
+    }
+
     setUser(user) {
-        this.setState({user: user});
+        sessionStorage.setItem("user", user);
     }
 }

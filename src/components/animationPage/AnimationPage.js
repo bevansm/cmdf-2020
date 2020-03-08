@@ -5,11 +5,8 @@ import {ClockCircleOutlined} from "@ant-design/icons";
 import {Quiz} from "./Quiz";
 import {quizzes} from "../../constants/Quizes";
 import {sendPoints} from "../../utils/APIUtils";
-import {UserContext} from "../../constants/Context";
 
 export class AnimationPage extends Component {
-    static contextType = UserContext;
-
     constructor(props) {
         super(props);
 
@@ -25,7 +22,8 @@ export class AnimationPage extends Component {
             quizzesTotal: 3,
             points: 0,
             quiz: null,
-            submitted: false
+            submitted: false,
+            quizzesDone: []
         }
     }
 
@@ -37,7 +35,7 @@ export class AnimationPage extends Component {
         return (
             <PageTemplate>
                 <div style={{marginBottom: 8}}>
-                    <img src="bird1.gif" alt="bird1" width="100%" height={"100%"} className="center"/>
+                    <img src={`bird${(this.state.quizzesCompleted % 3) + 1}.gif`} alt="bird" width="100%" height={"100%"} className="center"/>
                 </div>
                 {this.renderPoints()}
                 {this.renderQuiz()}
@@ -90,8 +88,12 @@ export class AnimationPage extends Component {
     }
 
     populateQuiz() {
+        let index;
+        do {
+            index = Math.floor(Math.random() * quizzes.length);
+        } while (this.state.quizzesDone.includes(index))
         const quiz = quizzes[0];
-        this.setState({quiz: quiz});
+        this.setState((prev) => ({quiz: quiz, quizzesDone: prev.quizzesDone.concat([index])}));
     }
 
     renderQuiz() {
