@@ -5,6 +5,7 @@ import {ClockCircleOutlined} from "@ant-design/icons";
 import {Quiz} from "./Quiz";
 import {quizzes} from "../../constants/Quizes";
 import {sendPoints} from "../../utils/APIUtils";
+import {StatusDisplay} from "../StatusDisplay/StatusDisplay";
 
 export class AnimationPage extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ export class AnimationPage extends Component {
                 {this.renderPoints()}
                 {this.renderQuiz()}
                 {this.renderProgress()}
+                <StatusDisplay/>
             </PageTemplate>);
     }
 

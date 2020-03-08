@@ -9,7 +9,7 @@ import {PageEnum} from "../constants/PageEnum";
 export function getStatus(caller) {
     const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
-    axios.get(baseUrl + "/users/status", getConfig(body))
+    axios.post(baseUrl + "/users/status", getConfig(body))
         .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
         .then((result) => caller.setState({data: result.data}))
         .catch((err) => apiErrorPopup(err));
@@ -19,7 +19,7 @@ export function getStatus(caller) {
 export function getDays(caller) {
     const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
-    axios.get(baseUrl + "/users/days", getConfig(body))
+    axios.put(baseUrl + "/users/days", getConfig(body))
         .catch(() => ({data: defaultDays}))
         .then((result) => caller.setState({data: result.data}))
         .catch((err) => apiErrorPopup(err));
