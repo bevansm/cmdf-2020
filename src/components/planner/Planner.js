@@ -42,6 +42,7 @@ export class Planner extends Component {
                         </Popover>
                     </div>
                 </div>
+                <Divider/>
                 {this.renderMenu()}
             </PageTemplate>
         );
@@ -61,13 +62,14 @@ export class Planner extends Component {
                         {`Remember that your spending budget is $${data[FieldEnum.TO_SAVE]} and your supplies budget is $${data[FieldEnum.TO_SUPPLIES]}!`}
                     </Text>
                 </div>
+                <Divider/>
                 <Form hideRequiredMark={true}>
-                    <div style={{textAlign: "center"}}>
+                    <div style={{textAlign: "center", marginBottom: 8}}>
                         <Text><strong>Needs</strong></Text>
                     </div>
                     {needCosts.map((cost) => this.renderCost(cost))}
                     <Divider/>
-                    <div style={{textAlign: "center"}}>
+                    <div style={{textAlign: "center", marginBottom: 8}}>
                         <Text><strong>Wants</strong></Text>
                     </div>
                     {wantCosts.map((cost) => this.renderCost(cost))}
@@ -82,7 +84,7 @@ export class Planner extends Component {
                 <Col span={4}>
                     <div style={{textAlign: "center", width: 30}}>
                         <div style={{display: "flex"}}>
-                            <img src={`/icon/${costName}.png`}/>
+                            <img src={`/icons/${costName}.png`}/>
                         </div>
                         {window.innerWidth > 500 ? <div style={{display: "flex"}}>
                                 <Text style={{display: "table", margin: "0 auto"}}>{costName}</Text></div>
@@ -93,7 +95,7 @@ export class Planner extends Component {
                     <Form.Item
                         label=""
                         name={costName}
-                        rules={[{required: true, message: 'Please provide an item count.'}]}>
+                        rules={[{required: true, message: 'Please provide a count.'}]}>
                         <InputNumber
                             required
                             min={0}

@@ -24,7 +24,7 @@ export class PageTemplate extends Component {
                     <Content style={{padding: 16, height: window.innerHeight}} className={"body"}>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>
-                                <div style={{height: 600}}>
+                                <div style={{height: "100%"}}>
                                     {this.props.children}
                                 </div>
                             </Card>
