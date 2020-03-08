@@ -15,7 +15,6 @@ export class Budget extends Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-        this.getBudget = this.getBudget.bind(this);
 
         this.state = {
             [FieldEnum.TO_SAVE]: "",

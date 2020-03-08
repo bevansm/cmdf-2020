@@ -7,7 +7,8 @@ import {Planner} from './components/planner/Planner';
 import {Animation} from './components/animation/Animation';
 import {PageEnum} from './constants/PageEnum';
 import {UserContext} from "./constants/Context";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/myStyles.css";
 import {Login} from "./components/login/Login";
 import {v1 as uuid} from 'uuid';
 
