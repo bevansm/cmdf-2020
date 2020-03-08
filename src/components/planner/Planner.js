@@ -82,7 +82,7 @@ export class Planner extends Component {
                 <Col span={4}>
                     <div style={{textAlign: "center", width: 30}}>
                         <div style={{display: "flex"}}>
-                            <img src={"/favicon.io"}/>
+                            <img src={`/icon/${costName}.png`}/>
                         </div>
                         {window.innerWidth > 500 ? <div style={{display: "flex"}}>
                                 <Text style={{display: "table", margin: "0 auto"}}>{costName}</Text></div>
