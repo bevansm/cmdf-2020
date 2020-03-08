@@ -48,6 +48,8 @@ export class Planner extends Component {
                 </div>
                 <Divider/>
                 {this.renderMenu()}
+                <Divider/>
+                {this.renderDescriptions()}
             </PageTemplate>
         );
     }
@@ -83,8 +85,6 @@ export class Planner extends Component {
                     </div>
                     {wantCosts.map((cost) => this.renderCost(cost))}
                 </Form>
-                <Divider/>
-                {this.renderDescriptions()}
             </div>
         );
     }
@@ -130,14 +130,11 @@ export class Planner extends Component {
 
 
     renderDescriptions() {
+        if (!this.state || !this.state.data) return null;
         const data = this.state.data;
         const costWithoutTax = getTotalCostsNoTax(this.state);
         const costWithTax = roundToTwo(costWithoutTax * taxes);
         const paycheckMinusSavings = data[FieldEnum.PAYCHECK] - costWithTax;
-        console.log(costWithTax);
-        console.log(costWithTax);
-        console.log(costWithoutTax);
-        console.log(paycheckMinusSavings);
         if (costWithTax > data[FieldEnum.TO_SUPPLIES]) this.errorPopup(`You've exceeded your supplies budget of $${data[FieldEnum.TO_SUPPLIES]}! Watch what you're spending!`);
         if (paycheckMinusSavings < data[FieldEnum.TO_SAVE]) this.errorPopup(`With what you're spending, you won't be able to save for your savings budget of $${data[FieldEnum.TO_SAVE]}!`);
         return (
@@ -158,7 +155,8 @@ export class Planner extends Component {
         notification["error"]({
             placement: "bottomRight",
             message: 'Over budget!',
-            description: msg
+            description: msg,
+            key: "errorMsg"
         });
     }
 }

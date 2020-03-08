@@ -63,9 +63,9 @@ export class Quiz extends Component {
         )
     }
 
-    onClick(value) {
+    onClick(event) {
         const quiz = this.props.quiz;
-        if (value === quiz.correctOption) this.props.onEnd(quiz.rightPoints);
+        if (event.target.value === quiz.correctOption) this.props.onEnd(quiz.rightPoints);
         else this.props.onEnd(quiz.wrongPoints);
     }
 }

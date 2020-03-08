@@ -37,7 +37,7 @@ export function sendDay(caller) {
     axios.post(baseUrl + "/users/days", getConfig(body))
         .then((result) => {
             if (result.data[FieldEnum.SAVINGS] === 0) {
-                useHistory().push(PageEnum.ENDGAME);
+                window.location.pathname = PageEnum.ENDGAME;
             }
         }).catch((err) => apiErrorPopup(err));
 }
@@ -50,11 +50,11 @@ export function sendPoints(caller) {
     axios.post(baseUrl + "/users/points", getConfig(body))
         .then((result) => {
             if (result.data[FieldEnum.PAYCHECK] < 0) {
-                useHistory().push(PageEnum.ENDGAME);
+                window.location.pathname = PageEnum.ENDGAME;
             } else if (result.data[FieldEnum.DAY] % 7 === 0) {
-                useHistory().push(PageEnum.BUDGET);
+                window.location.pathname = PageEnum.BUDGET;
             } else {
-                useHistory().push(PageEnum.PLAN);
+                window.location.pathname = PageEnum.PLAN;
             }
         }).catch((err) => apiErrorPopup(err));
 }
