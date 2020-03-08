@@ -10,7 +10,7 @@ produces:
   - application/json
 paths:
   /users/status:
-    put:
+    post:
       summary: Get data for a user
       operationId: getStatus
       x-google-backend:
