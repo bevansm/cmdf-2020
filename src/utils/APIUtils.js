@@ -1,11 +1,11 @@
 import axios from "axios";
 import {notification} from "antd";
 import {baseUrl} from "../constants/Constants";
-import {dayDataResponse} from "../constants/APIResponses";
+import {dayDataResponse, FieldEnum} from "../constants/APIResponses";
 
 // Gets the most recent day data for the user
 export function getDayData(caller) {
-    const body = {user: caller.context};
+    const body = {[FieldEnum.USER]: caller.context};
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
@@ -14,10 +14,11 @@ export function getDayData(caller) {
 }
 
 // Sets the user budget.
-export function setBudget(caller, budget) {
-    const body = {budget: budget, user: caller.context};
-    console.log(budget);
+export function setBudget(caller) {
+    const body = caller.state;
+    body[FieldEnum.USER] = caller.context;
     console.log(body);
+
     axios.put(baseUrl + "/users/budget", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
         .catch(() => apiErrorPopup());
@@ -25,7 +26,7 @@ export function setBudget(caller, budget) {
 
 // Sends the day to the backend
 export function sendDay(caller, day) {
-    const body = {days: [day], user: caller.context};
+    const body = {days: [day], [FieldEnum.USER]: caller.context};
     console.log(body);
     axios.post(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))

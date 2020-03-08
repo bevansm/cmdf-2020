@@ -18,8 +18,8 @@ export class Budget extends Component {
         this.getBudget = this.getBudget.bind(this);
 
         this.state = {
-            savingsBudget: "",
-            suppliesBudget: ""
+            [FieldEnum.TO_SAVE]: "",
+            [FieldEnum.TO_SUPPLIES]: ""
         };
     }
 
@@ -31,12 +31,12 @@ export class Budget extends Component {
 
     render() {
         const content = this.state && this.state.data ? this.renderMenu() : <CenteredSpinner/>;
-        const disableNext = this.state.savingsBudget === null || this.state.suppliesBudget === null
-            || this.state.savingsBudget === "" || this.state.suppliesBudget === "";
+        const disableNext = this.state[FieldEnum.TO_SAVE] === null || this.state[FieldEnum.TO_SUPPLIES] === null ||
+            this.state[FieldEnum.TO_SAVE] === "" || this.state[FieldEnum.TO_SUPPLIES] === "";
         const self = this;
         return <PageTemplate nextPage={PageEnum.PLAN}
                              title="Weekly Budget"
-                             onNext={() => setBudget(self, self.getBudget())}
+                             onNext={() => setBudget(self, self.state)}
                              disableNext={disableNext}>
             <div style={{textAlign: "center", marginBottom: 8}}>
                 <div style={{display: "inline-block"}}>
@@ -68,8 +68,8 @@ export class Budget extends Component {
                             name={"savings"}
                             precision={2}
                             required={true}
-                            value={this.state.savingsBudget || 0}
-                            onChange={(value) => this.setState({suppliesBudget: value})}
+                            value={this.state[FieldEnum.TO_SUPPLIES] || 0}
+                            onChange={(value) => this.setState({[FieldEnum.TO_SUPPLIES]: value})}
                             min={0}/>
                     </Form.Item>
                     <Form.Item
@@ -80,8 +80,8 @@ export class Budget extends Component {
                             name={"savings"}
                             precision={2}
                             required={true}
-                            value={this.state.savingsBudget || 0}
-                            onChange={(value) => this.setState({savingsBudget: value})}
+                            value={this.state[FieldEnum.TO_SAVE] || 0}
+                            onChange={(value) => this.setState({[FieldEnum.TO_SAVE]: value})}
                             min={0}/>
                     </Form.Item>
                 </Form>
@@ -91,10 +91,5 @@ export class Budget extends Component {
 
     onChange(event) {
         this.setState({[event.target.name]: event.target.value});
-    }
-
-    getBudget() {
-        const budget = this.state.savingsBudget + this.state.suppliesBudget;
-        return budget;
     }
 }
