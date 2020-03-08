@@ -12,7 +12,7 @@ export function getDayData(caller) {
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
-        // .catch((err) => caller.setState({data: dayDataResponse}))
+        .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
         .catch((err) => apiErrorPopup(err));
 }
 
