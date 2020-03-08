@@ -32,7 +32,7 @@ export class PageTemplate extends Component {
                     </Header>
                     <Content style={{padding: 16, height: "100%"}}>
                         <Card style={{marginBottom: 8}}>
-                            <img src={`logo.png`} alt="logo" width="75%" height={"75%"} className="center"/>
+                            <img src={`logo.png`} alt="logo" width="50%" height={"50%"} className="center"/>
                         </Card>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>
