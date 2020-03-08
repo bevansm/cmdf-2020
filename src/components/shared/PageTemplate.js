@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Layout, PageHeader} from "antd";
+import {Button, Layout, PageHeader, Card} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
 
 const {Header, Content, Footer} = Layout;
@@ -22,8 +22,12 @@ export class PageTemplate extends Component {
                         <PageHeader title={this.props.title}/>
                     </Header>
                     <Content style={{padding: 16, height: window.innerHeight}} className={"body"}>
-                        <div style={{height: 500}}>
-                            {this.props.children}
+                        <div style={{marginBottom: 8}}>
+                            <Card hoverable={true}>
+                                <div style={{height: 500}}>
+                                    {this.props.children}
+                                </div>
+                            </Card>
                         </div>
                         <div style={{"textAlign": "right"}}>
                             {this.getButton()}

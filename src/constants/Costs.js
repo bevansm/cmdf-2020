@@ -1,0 +1,1 @@
+export const costs = ["sample", "sample2", "sample3", "icon"];

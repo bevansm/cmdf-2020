@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Popover, Button, Typography, InputNumber, Form} from "antd";
+import {Popover, Button, Typography, InputNumber, Form, Divider} from "antd";
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {BudgetPopoverContent} from "./BudgetPopoverContent";
@@ -58,6 +58,7 @@ export class Budget extends Component {
                 <Text>{`$${weeklyCosts} will be deducted for weekly costs.`}</Text>
                 <br/>
                 <Text size={"small"}>{`Your previous budget was $${data[FieldEnum.BUDGET]}.`}</Text>
+                <Divider />
                 <Form>
                     <Form.Item
                         label="How much would you like to budget for supplies?"

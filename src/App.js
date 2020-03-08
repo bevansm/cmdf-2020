@@ -24,40 +24,41 @@ export class App extends Component {
     }
 
     render() {
-        console.log(this.state.user);
         return (
-            <Router>
-                <Switch>
-                    <Route path={PageEnum.CONCEPTS}>
-                        <UserContext.Provider value={this.state.user}>
-                            <Concepts/>
-                        </UserContext.Provider>
-                    </Route>
-                    <Route path={PageEnum.BUDGET}>
-                        <UserContext.Provider value={this.state.user}>
-                            <Budget/>
-                        </UserContext.Provider>
-                    </Route>
-                    <Route path={PageEnum.PLAN}>
-                        <UserContext.Provider value={this.state.user}>
-                            <Planner/>
-                        </UserContext.Provider>
-                    </Route>
-                    <Route path={PageEnum.ANIM}>
-                        <UserContext.Provider value={this.state.user}>
-                            <Animation/>
-                        </UserContext.Provider>
-                    </Route>
-                    <Route path={PageEnum.INTRO}>
-                        <UserContext.Provider value={this.state.user}>
-                            <Introduction/>
-                        </UserContext.Provider>
-                    </Route>
-                    <Route path={PageEnum.DEFAULT}>
-                        <Login setUser={this.setUser}/>
-                    </Route>
-                </Switch>
-            </Router>
+            <div style={{minWidth: 320}}>
+                <Router>
+                    <Switch>
+                        <Route path={PageEnum.CONCEPTS}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Concepts/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.BUDGET}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Budget/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.PLAN}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Planner/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.ANIM}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Animation/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.INTRO}>
+                            <UserContext.Provider value={this.state.user}>
+                                <Introduction/>
+                            </UserContext.Provider>
+                        </Route>
+                        <Route path={PageEnum.DEFAULT}>
+                            <Login setUser={this.setUser}/>
+                        </Route>
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 
