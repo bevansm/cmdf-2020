@@ -1,0 +1,56 @@
+swagger: '2.0'
+info:
+  title: Doughnut Cloud Endpoints
+  description: API For Doughnut Cloud
+  version: 1.0.0
+host: cloudrun-trial-qq3fq6ouya-uc.a.run.app
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /users/status:
+    get:
+      summary: Get data for a user
+      operationId: getStatus
+      x-google-backend:
+        address: https://us-central1-atlantean-field-270420.cloudfunctions.net/getStatus
+      responses:
+        '200':
+          description: User data retrieved
+  /users/days:
+    get:
+      summary: Get all days for user
+      operationId: getAllDays
+      x-google-backend:
+        address: https://us-central1-atlantean-field-270420.cloudfunctions.net/getAllDays
+      responses:
+        '200':
+          description: Days retrieved
+  /users/budget:
+    put:
+      summary: Update user's budget
+      operationId: updateUser
+      x-google-backend:
+        address: https://us-central1-atlantean-field-270420.cloudfunctions.net/updateUser
+      responses:
+        '200':
+          description: User budget updated
+  /users/days:
+    post:
+      summary: Add a user day
+      operationId: addDay
+      x-google-backend:
+        address: https://us-central1-atlantean-field-270420.cloudfunctions.net/addDay
+      responses:
+        '200':
+          description: Day created
+  /users/points:
+    post:
+      summary: Update user's salary based on points
+      operationId: points
+      x-google-backend:
+        address: https://us-central1-atlantean-field-270420.cloudfunctions.net/points
+      responses:
+        '200':
+          description: Salary updated
