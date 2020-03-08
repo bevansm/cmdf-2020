@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import {VictoryChart, VictoryArea} from "victory";
-import {Menu} from "antd";
+import React, {Component} from "react";
+import {VictoryChart, VictoryArea, VictoryTheme} from "victory";
+import {Button, Divider, Menu, Popover} from "antd";
 import {getDays} from "../../utils/APIUtils";
 import {CenteredSpinner} from "../shared/CenteredSpinner";
 import {FieldEnum} from "../../constants/APIResponses";
+import {StatusPopoverContent} from "./StatusPopoverContent";
 
 export class StatusDisplay extends Component {
     constructor(props) {
@@ -22,14 +23,28 @@ export class StatusDisplay extends Component {
     }
 
     render() {
-        if (!this.state.data) return <CenteredSpinner/>;
+        const topChild = (<div style={{textAlign: "center", marginBottom: 8}}>
+            <div style={{display: "inline-block"}}>
+                <Popover content={<StatusPopoverContent/>}
+                         placement="bottom">
+                    <Button>What are profit and revenue?</Button>
+                </Popover>
+            </div>
+        </div>);
+        if (!this.state.data) return <div>
+            {topChild}
+            <CenteredSpinner/>
+        </div>;
         const graphs = [FieldEnum.SPENDING, FieldEnum.TO_SAVE, FieldEnum.TO_SUPPLIES];
         return (
-            <Menu onClick={(e) => this.setState({current: e.key})}
-                  selectedKeys={[this.state.current]}
-                    mode={"horizontal"}>
-                {graphs.map((field) => this.renderHeader(field))}
-            </Menu>
+            <div>
+                {topChild}
+                <Menu onClick={(e) => this.setState({current: e.key})}
+                      selectedKeys={[this.state.current]}
+                      mode={"horizontal"}>
+                    {graphs.map((field) => this.renderHeader(field))}
+                </Menu>
+            </div>
         );
     }
 
@@ -47,14 +62,12 @@ export class StatusDisplay extends Component {
     renderGraph() {
         const field = this.state.current;
         const data = this.state.data.map((data) => ({
-            day: data[FieldEnum.DAY],
-            field: data[field]
+            x: data[FieldEnum.DAY],
+            y: data[field]
         }));
 
-        return <VictoryChart>
-            <VictoryArea data={this.state.data}>
-
-            </VictoryArea>
+        return <VictoryChart theme={VictoryTheme.material}>
+            <VictoryArea data={data}/>
         </VictoryChart>;
 
     }

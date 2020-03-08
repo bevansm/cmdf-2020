@@ -28,9 +28,6 @@ export class PageTemplate extends Component {
         return (
             <div style={{height: "100%", minHeight: "100%"}}>
                 <Layout style={{background: "transparent"}}>
-                    <Header>
-                        <PageHeader title={this.props.title}/>
-                    </Header>
                     <Content style={{padding: 16, height: "100%"}}>
                         <Card style={{marginBottom: 8}}>
                             <img src={`logo.png`}
