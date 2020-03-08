@@ -42,7 +42,7 @@ export class Login extends Component {
                             () => this.props.setUser(this.state.user))}/>
                 </Form.Item>
             </Form>
-            <img src="doughnut.gif" alt="doughnut" width="50%" height="50%" className="center"/>
+            <img src="doughnut.gif" alt="doughnut" width={150} height={150} className="center"/>
         </PageTemplate>;
     }
 }
