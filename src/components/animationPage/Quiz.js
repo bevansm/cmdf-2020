@@ -33,7 +33,7 @@ export class Quiz extends Component {
     renderLink() {
         const link = this.props.quiz.link;
         if (!link) return null;
-        return (<Tooltip title="Click to be redirected"
+        return (<Tooltip title="Click to learn more!"
                          trigger={"hover"}
                          placement={"right"}>
             <Button icon={<InfoCircleOutlined/>}
@@ -41,7 +41,7 @@ export class Quiz extends Component {
                     size="small"
                     type="link"
                     shape="circle">
-                <Text style={{fontSize: 10}} type={"secondary"}>Learn More About This Topic</Text>
+                <Text style={{fontSize: 10}} type={"secondary"}>Learn More</Text>
             </Button>
         </Tooltip>);
     }

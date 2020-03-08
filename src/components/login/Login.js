@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {Typography, Form, Input, Divider} from "antd";
-import { PageEnum } from "../../constants/PageEnum";
-import { PageTemplate } from "../shared/PageTemplate"
+import {PageEnum} from "../../constants/PageEnum";
+import {PageTemplate} from "../shared/PageTemplate"
 import {appTitle} from "../../constants/Constants";
 
-const { Text, Title } = Typography;
+const {Text, Title} = Typography;
 
 export class Login extends Component {
     constructor(props) {
@@ -17,11 +17,9 @@ export class Login extends Component {
 
 
     render() {
-        const self = this;
         return <PageTemplate nextPage={PageEnum.INTRO}
                              title="Register"
-                             disableNext={!this.state.user}
-                             onNext={() => self.props.setUser(self.state.user)}>
+                             disableNext={!this.state.user}>
             <Title level={4}>
                 {`Welcome to ${appTitle}!`}
             </Title>
@@ -39,7 +37,9 @@ export class Login extends Component {
                         required={true}
                         value={this.state.user}
                         placeholder={"mias-cats@doughnuts.com"}
-                        onChange={(value) => this.setState({user: value})}/>
+                        onChange={(event) => this.setState(
+                            {user: event.target.value},
+                            () => this.props.setUser(this.state.user))}/>
                 </Form.Item>
             </Form>
             <img src="doughnut.gif" alt="doughnut" width="50%" height="50%" className="center"/>

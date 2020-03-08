@@ -9,13 +9,10 @@ import {CostPopoverContent} from "./CostPopoverContent";
 import {CostsEnum, needCosts, wantCosts} from "../../constants/Costs";
 import {getTotalCostsNoTax, roundToTwo} from "../../utils/Utils";
 import {taxes} from "../../constants/Constants";
-import {UserContext} from "../../constants/Context";
 
 const {Text} = Typography;
 
 export class Planner extends Component {
-    static contextType = UserContext;
-
     constructor(props) {
         super(props);
 

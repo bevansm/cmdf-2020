@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Layout, PageHeader, Card, Divider, Typography, Spin} from "antd";
+import {Button, Layout, PageHeader, Card, Divider, Typography} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
 const {Header, Content} = Layout;
 
