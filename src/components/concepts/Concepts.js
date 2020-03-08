@@ -3,7 +3,7 @@ import { Typography } from "antd";
 import { PageEnum } from "../../constants/PageEnum";
 import { PageTemplate } from "../shared/PageTemplate"
 
-const { Title, Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 export class Concepts extends Component {
   render() {

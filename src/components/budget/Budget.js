@@ -35,7 +35,7 @@ export class Budget extends Component {
         const self = this;
         return <PageTemplate nextPage={PageEnum.PLAN}
                              title="Weekly Budget"
-                             onNext={() => setBudget(self, self.state)}
+                             onNext={() => setBudget(self)}
                              disableNext={disableNext}>
             <div style={{textAlign: "center", marginBottom: 8}}>
                 <div style={{display: "inline-block"}}>
@@ -53,13 +53,13 @@ export class Budget extends Component {
         const data = this.state.data;
         return (
             <div>
-                <Text>{`You have $${data[FieldEnum.SAVINGS]} in your bank account.`}</Text>
+                <Text>{`You have $${data[FieldEnum.SAVINGS]} in the bank, and you are expected to earn $${data[FieldEnum.PAYCHECK]} today.`}</Text>
                 <br/>
                 <Text>{`$${weeklyCosts} will be deducted for weekly costs.`}</Text>
                 <br/>
                 <Text size={"small"}>{`Your previous budget was $${data[FieldEnum.BUDGET]}.`}</Text>
                 <Divider />
-                <Form>
+                <Form hideRequiredMark={true}>
                     <Form.Item
                         label="How much would you like to budget for supplies?"
                         name={"supplies"}
