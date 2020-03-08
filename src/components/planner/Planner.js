@@ -1,8 +1,9 @@
 import React, {Component} from "react";
-import {Typography, Spin} from "antd";
+import {Typography} from "antd";
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
-import axios from "axios";
+import {CenteredSpinner} from "../shared/CenteredSpinner";
+import {getDayData} from "../../utils/APIUtils";
 
 const {Text} = Typography;
 
@@ -16,34 +17,16 @@ export class Planner extends Component {
     }
 
     componentDidMount() {
-        const body = null;
-        const config = {
-            crossDomain: true,
-            params: body,
-            headers:  { 'Content-Type': 'application/json' }
-        };
-
-        axios.get("", config)
-            .then((result) => {
-                const data = result.data;
-                // TODO
-                this.setState({hasData: true});
-            })
-            .catch((err)=> console.log(err));
+        getDayData(this);
     }
 
     render() {
         const title = this.state.hasData ? `Day ${this.state.day} Planning` : `Day Planning`;
-        const children = this.state.hasData ?  <Text>This is a placeholder.</Text> :
-            <div style={{textAlign: "center"}}>
-                <div style={{display: "inline-block"}}>
-                    <Spin size={"large"}/>
-                </div>
-            </div>
+        const children = this.state.hasData ? <Text>This is a placeholder.</Text> : <CenteredSpinner/>;
         return (
             <PageTemplate nextPage={PageEnum.ANIM} title={title}>
                 {children}
-        </PageTemplate>
-    );
+            </PageTemplate>
+        );
     }
 }

@@ -21,7 +21,7 @@ export class PageTemplate extends Component {
           <Header>
             <PageHeader title={this.props.title} />
           </Header>
-          <Content style={{marginTop: 16, height: 500}}>{this.props.children}</Content>
+          <Content style={{margin: 16, height: 500}}>{this.props.children}</Content>
           <Footer style={{"textAlign": "right"}}>
             {this.getButton()}
           </Footer>
@@ -35,7 +35,9 @@ export class PageTemplate extends Component {
       <Button
         href={this.props.nextPage}
         size={"small"}
-        icon={<CaretRightOutlined />}
+        icon={<CaretRightOutlined/>}
+        onClick={this.props.onNext}
+        disabled={this.props.disableNext}
       >
         Next
       </Button>
