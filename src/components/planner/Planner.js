@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Typography, Form, Popover, Button, InputNumber, Divider, Row, Col} from "antd";
+import {Typography, Form, Popover, Button, InputNumber, Divider, Row, Col, Descriptions, notification} from "antd";
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {CenteredSpinner} from "../shared/CenteredSpinner";
@@ -7,6 +7,8 @@ import {getDayData, sendDay} from "../../utils/APIUtils";
 import {FieldEnum} from "../../constants/APIResponses";
 import {CostPopoverContent} from "./CostPopoverContent";
 import {CostsEnum, needCosts, wantCosts} from "../../constants/Costs";
+import {getTotalCostsNoTax, roundToTwo} from "../../utils/Utils";
+import {taxes} from "../../constants/Constants";
 
 const {Text, Title} = Typography;
 
@@ -15,6 +17,8 @@ export class Planner extends Component {
         super(props);
 
         this.renderMenu = this.renderMenu.bind(this);
+        this.renderDescriptions = this.renderDescriptions.bind(this);
+        this.renderCost = this.renderCost.bind(this);
 
         this.state = {};
     }
@@ -74,6 +78,8 @@ export class Planner extends Component {
                     </div>
                     {wantCosts.map((cost) => this.renderCost(cost))}
                 </Form>
+                <Divider/>
+                {this.renderDescriptions()}
             </div>
         );
     }
@@ -106,16 +112,47 @@ export class Planner extends Component {
                     </Form.Item>
                 </Col>
                 <Col span={2} style={{display: "flex", "alignItems": "center", marginBottom: 24}}>
-                    {`$${Math.round(CostsEnum[costName] || 0)}`}
+                    {`$${roundToTwo(CostsEnum[costName] || 0)}`}
                 </Col>
-                <Col span={6}>
-
-                </Col>
+                <Col span={6}/>
                 <Col span={2} style={{display: "flex", "alignItems": "center", marginBottom: 24}}>
-                    {`$${Math.round((CostsEnum[costName] || 0) * (this.state[costName] || 0))}`}
+                    {`$${roundToTwo((CostsEnum[costName] || 0) * (this.state[costName] || 0))}`}
                 </Col>
             </Row>
         );
     }
 
+
+    renderDescriptions() {
+        const data = this.state.data;
+        const costWithoutTax = getTotalCostsNoTax(this.state);
+        const costWithTax = roundToTwo(costWithoutTax * taxes);
+        const paycheckMinusSavings = data[FieldEnum.PAYCHECK] - costWithTax;
+        console.log(costWithTax);
+        console.log(costWithTax);
+        console.log(costWithoutTax);
+        console.log(paycheckMinusSavings);
+        if (costWithTax > data[FieldEnum.TO_SUPPLIES]) this.errorPopup(`You've exceeded your supplies budget of $${data[FieldEnum.TO_SUPPLIES]}! Watch what you're spending!`);
+        if (paycheckMinusSavings < data[FieldEnum.TO_SAVE]) this.errorPopup(`With what you're spending, you won't be able to save for your savings budget of $${data[FieldEnum.TO_SAVE]}!`);
+        return (
+            <Row>
+                <Col span={20}/>
+                <Col span={4}>
+                    <Descriptions title={"Totals"} size={"25%"} column={1}>
+                        <Descriptions.Item label={"Subtotal"} span={12}>{`$${costWithoutTax}`}</Descriptions.Item>
+                        <Descriptions.Item label={"PST/GST"} span={12}>{`$${roundToTwo(taxes / 100)}%`}</Descriptions.Item>
+                        <Descriptions.Item label={"Total"} span={12}>{`$${costWithTax}`}</Descriptions.Item>
+                    </Descriptions>
+                </Col>
+            </Row>
+        );
+    }
+
+    errorPopup(msg) {
+        notification["error"]({
+            placement: "bottomRight",
+            message: 'Over budget!',
+            description: msg
+        });
+    }
 }
