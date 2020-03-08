@@ -1,33 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import { Introduction } from './components/introduction/Introduction';
 import { Concepts } from './components/concepts/Concepts';
-import { Setup } from './components/setup/Setup';
-import { Planning } from './components/planning/Planning';
+import { Budget } from './components/budget/Budget';
+import { Planner } from './components/planner/Planner';
 import { Animation } from './components/animation/Animation';
+import { PageEnum } from './constants/PageEnum';
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path={"/concepts"}>
-          <Concepts/>
-        </Route>
-        <Route path={"/setup"}>
-          <Setup/>
-        </Route>
-        <Route path={"/plan"}>
-          <Planning/>
-        </Route>
-        <Route path={"/loading"}>
-          <Animation/>
-        </Route>
-        <Route path={"/"}>
-          <Introduction/>
-        </Route>
-      </Switch>
-    </Router>
-  );
+export class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path={PageEnum.CONCEPTS}>
+            <Concepts/>
+          </Route>
+          <Route path={PageEnum.BUDGET}>
+            <Budget/>
+          </Route>
+          <Route path={PageEnum.PLAN}>
+            <Planner/>
+          </Route>
+          <Route path={PageEnum.ANIM}>
+            <Animation/>
+          </Route>
+          <Route path={PageEnum.INTRO}>
+            <Introduction/>
+          </Route>
+          <Route path={PageEnum.DEFAULT}>
+            <Introduction/>
+          </Route>
+        </Switch>
+      </Router>
+      );
+    }
 }
-
-export default App;

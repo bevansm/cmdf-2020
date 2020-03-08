@@ -1,0 +1,1 @@
+export const appTitle = "All About the Dough";

@@ -5,10 +5,10 @@ import { PageTemplate } from "../shared/PageTemplate"
 
 const { Text } = Typography;
 
-export class Concepts extends Component {
-  render() {
-    return <PageTemplate nextPage={PageEnum.BUDGET} title="Key Concepts">
-        <Text>This is a placeholder.</Text>
-    </PageTemplate>;
-  }
+export class Budget extends Component {
+    render() {
+        return <PageTemplate nextPage={PageEnum.PLAN} title="Weekly Budget">
+            <Text>This is a placeholder.</Text>
+        </PageTemplate>;
+    }
 }
