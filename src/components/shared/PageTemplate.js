@@ -21,10 +21,10 @@ export class PageTemplate extends Component {
                     <Header>
                         <PageHeader title={this.props.title}/>
                     </Header>
-                    <Content style={{padding: 16, height: window.innerHeight}} className={"body"}>
+                    <Content style={{padding: 16, height: "100%"}} className={"body"}>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>
-                                <div style={{height: 600}}>
+                                <div style={{height: "100%"}}>
                                     {this.props.children}
                                 </div>
                             </Card>

@@ -19,5 +19,5 @@ export const dayDataResponse = {
     [FieldEnum.TO_SAVE]: 60,
     [FieldEnum.DAY]: 10,
     [FieldEnum.DAYS]: [],
-    [FieldEnum.PAYCHECK]: 20
+    [FieldEnum.PAYCHECK]: 120
 }

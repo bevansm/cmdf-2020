@@ -45,6 +45,7 @@ export class Budget extends Component {
                     </Popover>
                 </div>
             </div>
+            <Divider/>
             {content}
         </PageTemplate>;
     }
