@@ -4,6 +4,6 @@ export const PageEnum = {
     CONCEPTS: "/concepts",
     BUDGET: "/budget",
     PLAN: "/planner",
-    ANIM: "/animation",
+    ANIM: "/animationPage",
     REVENUE: "/revenue"
 }

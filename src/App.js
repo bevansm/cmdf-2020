@@ -4,7 +4,7 @@ import {Introduction} from './components/introduction/Introduction';
 import {Concepts} from './components/concepts/Concepts';
 import {Budget} from './components/budget/Budget';
 import {Planner} from './components/planner/Planner';
-import {Animation} from './components/animation/Animation';
+import {AnimationPage} from './components/animationPage/AnimationPage';
 import {PageEnum} from './constants/PageEnum';
 import {UserContext} from "./constants/Context";
 import "./styles/App.css";
@@ -45,7 +45,7 @@ export class App extends Component {
                         </Route>
                         <Route path={PageEnum.ANIM}>
                             <UserContext.Provider value={this.state.user}>
-                                <Animation/>
+                                <AnimationPage/>
                             </UserContext.Provider>
                         </Route>
                         <Route path={PageEnum.INTRO}>
