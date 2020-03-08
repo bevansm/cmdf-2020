@@ -6,7 +6,9 @@ export const FieldEnum = {
     TO_SUPPLIES: "supplies",
     TO_SAVE: "saved",
     DAY: "day",
-    DAYS: "day"
+    DAYS: "day",
+    SPENDING: "spending",
+    PAYCHECK: "paycheck",
 }
 
 export const dayDataResponse = {
@@ -16,5 +18,6 @@ export const dayDataResponse = {
     [FieldEnum.TO_SUPPLIES]: 60,
     [FieldEnum.TO_SAVE]: 60,
     [FieldEnum.DAY]: 10,
-    [FieldEnum.DAYS]: []
+    [FieldEnum.DAYS]: [],
+    [FieldEnum.PAYCHECK]: 20
 }

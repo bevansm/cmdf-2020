@@ -2,6 +2,7 @@ import axios from "axios";
 import {notification} from "antd";
 import {baseUrl} from "../constants/Constants";
 import {dayDataResponse, FieldEnum} from "../constants/APIResponses";
+import {needCosts, wantCosts} from "../constants/Costs";
 
 // Gets the most recent day data for the user
 export function getDayData(caller) {
@@ -25,8 +26,11 @@ export function setBudget(caller) {
 }
 
 // Sends the day to the backend
-export function sendDay(caller, day) {
-    const body = {days: [day], [FieldEnum.USER]: caller.context};
+export function sendDay(caller) {
+    const body = caller.state;
+    body[FieldEnum.SAVINGS] = body.keys().reduce((acc, key) => needCosts.includes(key) || wantCosts.includes(key) ? acc + body[key] : acc);
+    body[FieldEnum.USER] = caller.context;
+
     console.log(body);
     axios.post(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
