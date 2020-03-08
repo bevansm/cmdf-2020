@@ -84,6 +84,6 @@ function apiErrorPopup(err) {
         placement: "bottomRight",
         message: 'API Error',
         description:
-            'Our cats back in server tried hard, but they were unable to fetch your data: ' + err.message
+            'Our cats back in server tried hard, but they were unable to fetch your data. We\'re showing static data instead.'
     });
 }
