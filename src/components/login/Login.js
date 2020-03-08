@@ -20,7 +20,7 @@ export class Login extends Component {
         const self = this;
         return <PageTemplate nextPage={PageEnum.INTRO}
                              title="Register"
-                             disableNext={this.state.user}
+                             disableNext={!this.state.user}
                              onNext={() => self.props.setUser(self.state.user)}>
             <Title level={4}>
                 {`Welcome to ${appTitle}!`}

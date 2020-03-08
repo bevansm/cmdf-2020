@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {Button, Layout, PageHeader, Card} from "antd";
+import {Button, Layout, PageHeader, Card, Divider, Typography, Spin} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
-import {ExpectedOriginsEnum, PageEnum} from "../../constants/PageEnum";
-import {useHistory, useLocation} from "react-router-dom";
 const {Header, Content} = Layout;
+
+const {Title} = Typography;
 
 /**
  * @param title - title of the page (optional)
@@ -33,6 +33,12 @@ export class PageTemplate extends Component {
                     <Content style={{padding: 16, height: "100%"}}>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>
+                                <div style={{textAlign: "center"}}>
+                                    <div style={{display: "inline-block"}}>
+                                        <Title level={4}>{this.props.title}</Title>
+                                    </div>
+                                </div>
+                                <Divider/>
                                 <div style={{height: "100%"}}>
                                     {this.props.children}
                                 </div>

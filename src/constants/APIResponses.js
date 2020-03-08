@@ -1,14 +1,14 @@
 export const FieldEnum = {
-    SAVINGS: "amount_saved",
+    SAVINGS: "total",
     BUDGET: "budget",
-    USER: "user",
+    USER: "email",
     FIXED: "fixed_costs",
-    TO_SUPPLIES: "supplies",
-    TO_SAVE: "saved",
-    DAY: "day",
-    DAYS: "day",
+    TO_SUPPLIES: "spendingBudget",
+    TO_SAVE: "savingsBudget",
+    DAY: "dayNumber",
+    DAYS: "days",
     SPENDING: "spending",
-    PAYCHECK: "paycheck",
+    PAYCHECK: "salary",
 }
 
 export const dayDataResponse = {

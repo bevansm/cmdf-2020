@@ -12,8 +12,8 @@ export function getDayData(caller) {
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
-        .catch((err) => caller.setState({data: dayDataResponse}))
-        .catch((err) => apiErrorPopup());
+        // .catch((err) => caller.setState({data: dayDataResponse}))
+        .catch((err) => apiErrorPopup(err));
 }
 
 // Sets the user budget.
@@ -24,13 +24,13 @@ export function setBudget(caller) {
 
     axios.put(baseUrl + "/users/budget", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
-        .catch(() => apiErrorPopup());
+        .catch((err) => apiErrorPopup(err));
 }
 
 // Sends the day to the backend
 export function sendDay(caller) {
     const body = caller.state;
-    body[FieldEnum.SAVINGS] = getTotalCostsNoTax(body) * taxes;
+    body[FieldEnum.SPENDING] = getTotalCostsNoTax(body) * taxes;
     body[FieldEnum.USER] = caller.context;
 
     console.log(body);
@@ -39,12 +39,12 @@ export function sendDay(caller) {
             if (result.data[FieldEnum.SAVINGS] === 0) {
                 useHistory().push(PageEnum.ENDGAME);
             }
-        }).catch((err) => apiErrorPopup());
+        }).catch((err) => apiErrorPopup(err));
 }
 
 // Sends the points to the backend
 export function sendPoints(caller) {
-    const body = {points: caller.state.points, user: caller.context};
+    const body = {points: caller.state.points, [FieldEnum.USER]: caller.context};
 
     console.log(body);
     axios.post(baseUrl + "/users/points", getConfig(body))
@@ -56,7 +56,7 @@ export function sendPoints(caller) {
             } else {
                 useHistory().push(PageEnum.PLAN);
             }
-        }).catch((err) => apiErrorPopup());
+        }).catch((err) => apiErrorPopup(err));
 }
 
 function getConfig(body) {
@@ -67,11 +67,11 @@ function getConfig(body) {
     };
 }
 
-function apiErrorPopup() {
+function apiErrorPopup(err) {
     notification["error"]({
         placement: "bottomRight",
         message: 'API Error',
         description:
-            'Our cats back in server tried hard, but they were unable to fetch your data.'
+            'Our cats back in server tried hard, but they were unable to fetch your data: ' + err.message
     });
 }
