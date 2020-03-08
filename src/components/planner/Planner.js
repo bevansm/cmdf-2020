@@ -65,6 +65,11 @@ export class Planner extends Component {
                     <Text style={{marginBottom: 8}}>
                         {`Remember that your spending budget is $${data[FieldEnum.TO_SAVE]} and your supplies budget is $${data[FieldEnum.TO_SUPPLIES]}!`}
                     </Text>
+                    <br/>
+                    <br/>
+                    <Text style={{marginBottom: 8}}>
+                        {`Our "needs" are required to run our shop while our "wants" are items that are nice to have but not required`}
+                    </Text>
                 </div>
                 <Divider/>
                 <Form hideRequiredMark={true}>
