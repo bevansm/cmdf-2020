@@ -84,7 +84,9 @@ export class Budget extends Component {
                             min={0}/>
                     </Form.Item>
                 </Form>
+                <img src="cat.gif" alt="cat1" width = "200px" height ="200px"></img>
             </div>
+            
         );
     }
 
