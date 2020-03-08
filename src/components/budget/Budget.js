@@ -4,7 +4,7 @@ import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {BudgetPopoverContent} from "./BudgetPopoverContent";
 import {CenteredSpinner} from "../shared/CenteredSpinner";
-import {getDayData, setBudget} from "../../utils/APIUtils";
+import {getStatus, setBudget} from "../../utils/APIUtils";
 import {weeklyCosts} from "../../constants/Constants";
 import {FieldEnum} from "../../constants/APIResponses";
 
@@ -22,7 +22,7 @@ export class Budget extends Component {
     }
 
     componentDidMount() {
-        getDayData(this);
+        getStatus(this);
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, Layout, PageHeader, Card, Divider, Typography} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
+
 const {Header, Content} = Layout;
 
 const {Title} = Typography;
@@ -32,7 +33,12 @@ export class PageTemplate extends Component {
                     </Header>
                     <Content style={{padding: 16, height: "100%"}}>
                         <Card style={{marginBottom: 8}}>
-                            <img src={`logo.png`} alt="logo" width="50%" height={"50%"} className="center"/>
+                            <img src={`logo.png`}
+                                 alt="logo"
+                                 width="75%"
+                                 height="75%"
+                                 className="center"
+                                 style={{maxWidth: 900, maxHeight: 100}}/>
                         </Card>
                         <div style={{marginBottom: 8}}>
                             <Card hoverable={true}>

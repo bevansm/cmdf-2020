@@ -3,7 +3,7 @@ import {Typography, Form, Popover, Button, InputNumber, Divider, Row, Col, Descr
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {CenteredSpinner} from "../shared/CenteredSpinner";
-import {getDayData, sendDay} from "../../utils/APIUtils";
+import {getStatus, sendDay} from "../../utils/APIUtils";
 import {FieldEnum} from "../../constants/APIResponses";
 import {CostPopoverContent} from "./CostPopoverContent";
 import {CostsEnum, needCosts, wantCosts} from "../../constants/Costs";
@@ -24,7 +24,7 @@ export class Planner extends Component {
     }
 
     componentDidMount() {
-        getDayData(this);
+        getStatus(this);
     }
 
     render() {

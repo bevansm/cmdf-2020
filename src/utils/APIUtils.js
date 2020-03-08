@@ -2,17 +2,25 @@ import axios from "axios";
 import {notification} from "antd";
 import {baseUrl, taxes} from "../constants/Constants";
 import {dayDataResponse, FieldEnum} from "../constants/APIResponses";
-import {useHistory} from "react-router-dom";
 import {getTotalCostsNoTax} from "./Utils";
 import {PageEnum} from "../constants/PageEnum";
 
 // Gets the most recent day data for the user
-export function getDayData(caller) {
+export function getStatus(caller) {
+    const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
+    console.log(body);
+    axios.get(baseUrl + "/users/status", getConfig(body))
+        .then((result) => caller.setState({data: result.data}))
+        .catch((err) => apiErrorPopup(err));
+}
+
+// Gets the most recent day data for the user
+export function getDays(caller) {
     const body = {[FieldEnum.USER]: sessionStorage.getItem("user")};
     console.log(body);
     axios.get(baseUrl + "/users/days", getConfig(body))
         .then((result) => caller.setState({data: result.data}))
-        .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
+        // .catch((err) => caller.setState({data: dayDataResponse})) //uncomment to load static data
         .catch((err) => apiErrorPopup(err));
 }
 
