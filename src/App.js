@@ -1,38 +1,66 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import './App.css';
-import { Introduction } from './components/introduction/Introduction';
-import { Concepts } from './components/concepts/Concepts';
-import { Budget } from './components/budget/Budget';
-import { Planner } from './components/planner/Planner';
-import { Animation } from './components/animation/Animation';
-import { PageEnum } from './constants/PageEnum';
+import {Introduction} from './components/introduction/Introduction';
+import {Concepts} from './components/concepts/Concepts';
+import {Budget} from './components/budget/Budget';
+import {Planner} from './components/planner/Planner';
+import {Animation} from './components/animation/Animation';
+import {PageEnum} from './constants/PageEnum';
+import {UserContext} from "./constants/Context";
+import "./App.css";
+import {Login} from "./components/login/Login";
+import {v1 as uuid} from 'uuid';
 
 export class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route path={PageEnum.CONCEPTS}>
-            <Concepts/>
-          </Route>
-          <Route path={PageEnum.BUDGET}>
-            <Budget/>
-          </Route>
-          <Route path={PageEnum.PLAN}>
-            <Planner/>
-          </Route>
-          <Route path={PageEnum.ANIM}>
-            <Animation/>
-          </Route>
-          <Route path={PageEnum.INTRO}>
-            <Introduction/>
-          </Route>
-          <Route path={PageEnum.DEFAULT}>
-            <Introduction/>
-          </Route>
-        </Switch>
-      </Router>
-      );
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: uuid()
+        }
+
+        this.setUser = this.setUser.bind(this);
+    }
+
+    render() {
+        console.log(this.state.user);
+        return (
+            <Router>
+                <Switch>
+                    <Route path={PageEnum.CONCEPTS}>
+                        <UserContext.Provider value={this.state.user}>
+                            <Concepts/>
+                        </UserContext.Provider>
+                    </Route>
+                    <Route path={PageEnum.BUDGET}>
+                        <UserContext.Provider value={this.state.user}>
+                            <Budget/>
+                        </UserContext.Provider>
+                    </Route>
+                    <Route path={PageEnum.PLAN}>
+                        <UserContext.Provider value={this.state.user}>
+                            <Planner/>
+                        </UserContext.Provider>
+                    </Route>
+                    <Route path={PageEnum.ANIM}>
+                        <UserContext.Provider value={this.state.user}>
+                            <Animation/>
+                        </UserContext.Provider>
+                    </Route>
+                    <Route path={PageEnum.INTRO}>
+                        <UserContext.Provider value={this.state.user}>
+                            <Introduction/>
+                        </UserContext.Provider>
+                    </Route>
+                    <Route path={PageEnum.DEFAULT}>
+                        <Login setUser={this.setUser}/>
+                    </Route>
+                </Switch>
+            </Router>
+        );
+    }
+
+    setUser(user) {
+        this.setState({user: user});
     }
 }
