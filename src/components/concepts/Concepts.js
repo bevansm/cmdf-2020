@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Typography } from "antd";
+import {Divider, Typography} from "antd";
 import { PageEnum } from "../../constants/PageEnum";
 import { PageTemplate } from "../shared/PageTemplate"
 
 const { Paragraph } = Typography;
 
 export class Concepts extends Component {
-  render() {
+
+    render() {
     return <PageTemplate nextPage={PageEnum.BUDGET} title="Key Concepts">
-         <Paragraph>
-          As you grow your donut business with Mia, you will also learn the following basic financial literacy concepts:
+        <img src="cockateil.gif" alt="professor bird" width="25%" height="25%" className="center"/>
+        <Divider/>
+        <Paragraph>
+          As you grow your donut business with Mia, you will learn about a few basic financial literacy concepts:
         </Paragraph>
 
         <Paragraph>

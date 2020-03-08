@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Popover, Button, Typography, InputNumber, Form, Divider, Input} from "antd";
+import {Popover, Button, Typography, InputNumber, Form, Divider} from "antd";
 import {PageEnum} from "../../constants/PageEnum";
 import {PageTemplate} from "../shared/PageTemplate"
 import {BudgetPopoverContent} from "./BudgetPopoverContent";
@@ -14,8 +14,8 @@ const {Text} = Typography;
 export class Budget extends Component {
     constructor(props) {
         super(props);
-        this.onChange = this.onChange.bind(this);
 
+        this.onChange = this.onChange.bind(this);
         this.state = {
             [FieldEnum.TO_SAVE]: "",
             [FieldEnum.TO_SUPPLIES]: ""

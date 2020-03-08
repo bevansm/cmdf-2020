@@ -14,7 +14,6 @@ export class Quiz extends Component {
     }
 
     render() {
-        console.log("hi!");
         const quiz = this.props.quiz;
         return (
             <div className={"fadeInUpBig, fadeOutDownBig"}>

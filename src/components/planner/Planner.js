@@ -9,10 +9,13 @@ import {CostPopoverContent} from "./CostPopoverContent";
 import {CostsEnum, needCosts, wantCosts} from "../../constants/Costs";
 import {getTotalCostsNoTax, roundToTwo} from "../../utils/Utils";
 import {taxes} from "../../constants/Constants";
+import {UserContext} from "../../constants/Context";
 
 const {Text} = Typography;
 
 export class Planner extends Component {
+    static contextType = UserContext;
+
     constructor(props) {
         super(props);
 
@@ -104,6 +107,7 @@ export class Planner extends Component {
                         rules={[{required: true, message: 'Please provide a count.'}]}>
                         <InputNumber
                             required
+                            placeholder={0}
                             min={0}
                             step={1}
                             value={this.state[costName] || 0}

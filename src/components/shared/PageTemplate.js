@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {Button, Layout, PageHeader, Card} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
-
+import {ExpectedOriginsEnum, PageEnum} from "../../constants/PageEnum";
+import {useHistory, useLocation} from "react-router-dom";
 const {Header, Content} = Layout;
 
 /**
@@ -9,9 +10,17 @@ const {Header, Content} = Layout;
  * @param nextPage - link to the next page (optional)
  */
 export class PageTemplate extends Component {
+    // static contextType = staticContext;
+
     constructor(props) {
         super(props);
         this.getButton = this.getButton.bind(this);
+        // const location = useLocation();
+        // console.log(location);
+        // const expectedOrigins = ExpectedOriginsEnum["/"];
+        //
+        // const from = location.state || {from: {pathname: PageEnum.DEFAULT}};
+        // if (!expectedOrigins.includes(from.pathname)) useHistory().push(PageEnum.LOGIN);
     }
 
     render() {

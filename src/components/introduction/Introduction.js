@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import {Typography } from "antd";
 import { PageEnum } from "../../constants/PageEnum";
 import { PageTemplate } from "../shared/PageTemplate"
+import {UserContext} from "../../constants/Context";
 
 const { Title, Text } = Typography;
 
 export class Introduction extends Component {
-  render() {
-      console.log(this.context);
+    static contextType = UserContext;
+
+    render() {
     return <PageTemplate nextPage={PageEnum.CONCEPTS} title="Introduction">
         <Title level={2}>{`Welcome, ${this.context}!`}</Title>
         

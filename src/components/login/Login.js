@@ -42,7 +42,7 @@ export class Login extends Component {
                         onChange={(value) => this.setState({user: value})}/>
                 </Form.Item>
             </Form>
-            <img src="doughnut.gif" alt="doughnut" width="800px" height="500px" className="center"/>
+            <img src="doughnut.gif" alt="doughnut" width="50%" height="50%" className="center"/>
         </PageTemplate>;
     }
 }
