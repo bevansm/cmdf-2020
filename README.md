@@ -66,3 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Image Resources
+candy.png from https://www.flaticon.com/free-icon/candy_448011
+bike.png from https://www.svgrepo.com/svg/780/bicycle
+ring.png from https://www.pngitem.com/middle/iTiRmbR_transparent-wedding-ring-vector-png-logo-diamond-ring/
+doughnut.png from https://www.youtube.com/watch?v=wZKmG1O8hqc
+flower.png from https://purepng.com/photo/6006/nature-flower-vector
