@@ -22,7 +22,8 @@ export class AnimationPage extends Component {
             quizzesTotal: 3,
             points: 0,
             quiz: null,
-            submitted: false
+            submitted: false,
+            quizzesDone: []
         }
     }
 
@@ -87,8 +88,12 @@ export class AnimationPage extends Component {
     }
 
     populateQuiz() {
+        let index;
+        do {
+            index = Math.floor(Math.random() * quizzes.length);
+        } while (this.quizzesDone.includes(index))
         const quiz = quizzes[0];
-        this.setState({quiz: quiz});
+        this.setState((prev) => ({quiz: quiz, quizzesDone: prev.quizzesDone.concat([index])}));
     }
 
     renderQuiz() {
