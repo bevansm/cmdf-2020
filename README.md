@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##All About the Dough
+## All About the Dough
 
 Educating our next generation is the key to a successful future. We believe that the understanding of money is crucial for the development of adulthood skillsets.  A childhood favourite, "Lemonade Stand," inspired our game. All About the Dough is a game-based educational web app to teach children basic financial literacy concepts such as budgeting, needs and wants, and sales tax.  "All About the Dough" is a game geared towards girls between the ages of 10 to 15.
 
